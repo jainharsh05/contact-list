@@ -11,7 +11,6 @@ const initialValues = {
 
 function AddContact() {
   const location = useLocation();
-  console.log(location);
   const [field, setField] = useState(initialValues);
 
   const editPage = location.pathname.startsWith("/edit-contact");
@@ -19,18 +18,14 @@ function AddContact() {
   useEffect(() => {
     if (editPage) {
       const resultLocal = JSON.parse(localStorage.getItem("contact"));
-      console.log(resultLocal);
       item = resultLocal[location.state.editIndex];
       setField(item);
-      console.log(item);
       document.getElementById("selecttype").value = item.type;
     }
   }, []);
   const navigate = useNavigate();
   const handleChange = (e) => {
     e.preventDefault();
-    console.log(e);
-
     if (e.target.name === "isWhatsapp") {
       setField({ ...field, [e.target.name]: e.target.checked });
     } else {
@@ -57,7 +52,6 @@ function AddContact() {
   };
 
   const handleUpdate = (e) => {
-    console.log(e);
     e.preventDefault();
     let contact = JSON.parse(localStorage.getItem("contact"));
     contact.splice(location.state.editIndex, 1, field);

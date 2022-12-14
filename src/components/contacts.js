@@ -16,7 +16,6 @@ function Contacts() {
   }, [showModal]);
 
   const handleModal = (ind) => {
-    console.log("modal got true", ind);
     setShowModal(true);
     setSelectedDeletion(ind);
   };
@@ -24,7 +23,6 @@ function Contacts() {
     setShowModal(false);
   };
   const handleDel = () => {
-    console.log(selectedDeletion);
     let delElement = JSON.parse(localStorage.getItem("contact"));
     delElement.splice(Number(selectedDeletion), 1);
     delElement.sort((a, b) => (a.Name > b.Name ? 1 : -1));
